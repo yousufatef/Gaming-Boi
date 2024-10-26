@@ -42,7 +42,7 @@ export const login = async (data: { email: string; password: string }) => {
       httpOnly: true,
       maxAge: JWT_EXPIRES,
       sameSite: "none",
-      path: "*",
+      path: "/",
       secure: true,
     });
 
