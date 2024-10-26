@@ -38,7 +38,7 @@ const Filters = ({ generes }: { generes: any[] }) => {
         {isLoading ? (
           <GameSkeleton number={21} />
         ) : games?.data.results.length > 0 ? (
-          games?.data.results.map((game: Game) => <GameCard key={game.id} game={game} />)
+          games?.data.results.map((game: Game) => <GameCard wishlist key={game.id} game={game} />)
         ) : (
           <Empty message="Sorry, no games found in this page" />
         )}

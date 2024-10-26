@@ -20,7 +20,7 @@ const GameCard = ({ game, wishlist }: { game: Game; wishlist?: boolean }) => {
               <div className="hover:opacity-80 duration-150 w-full overflow-hidden h-64 relative rounded-xl">
                 <Image className=" object-cover" src={game.background_image} alt={game.name} fill />
               </div>
-              <Link href={`/games/${game.id}`} className=" text-sm line-clamp-1 font-semibold text-white">
+              <Link href={`/game/${game.id}`} className=" text-sm line-clamp-1 font-semibold text-white">
                 {game.name}
               </Link>
               <div key={game.id} className=" mt-2 flex items-center gap-1">
