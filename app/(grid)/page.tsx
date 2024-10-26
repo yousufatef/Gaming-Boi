@@ -1,8 +1,10 @@
+import connect from "../actions/connet";
 import { getGamesByIds, searchGames } from "../api/api";
 import GamesSlider from "../components/GamesSlider";
 import Hero from "../components/Hero";
 
 export default async function Home() {
+  await connect();
   const data = await searchGames("", 2, [], 9);
   const ps5 = await searchGames(
     "",
