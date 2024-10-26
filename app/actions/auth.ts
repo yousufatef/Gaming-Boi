@@ -43,6 +43,7 @@ export const login = async (data: { email: string; password: string }) => {
       maxAge: JWT_EXPIRES,
       sameSite: "none",
       path: "*",
+      secure: true,
     });
 
     return { success: "Login successful", data: userObj };
