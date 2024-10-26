@@ -12,12 +12,13 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
   const { games, isLoading } = useGetGames({ query: search, isDisabled: search === "" });
+  const [active, setActive] = useState(false);
   const outsideREF = useRef(null);
   useEffect(() => {
     window.addEventListener("click", (e) => {
       console.log(e.target, outsideREF.current);
       if (outsideREF.current && !outsideREF.current.contains(e.target)) {
-        setSearch("");
+        setActive(false);
       }
     });
   });
@@ -35,7 +36,10 @@ const Search = () => {
     >
       <input
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          setActive(true);
+          setQuery(e.target.value);
+        }}
         className="py-2  text-base   w-full bg-transparent text-gray-50  border-none   outline-none active:outline-none ring-0 placeholder:text-gray-400"
       />
       <div className=" flex items-center gap-2">
@@ -48,7 +52,7 @@ const Search = () => {
         <SearchIcon className="w-5 h-5 cursor-pointer  duration-150 group-hover:text-rose-400" />
       </div>
       <AnimatePresence>
-        {(games?.data || isLoading) && (
+        {(games?.data || isLoading) && active && (
           <MotionItem
             initial={{ height: 0 }}
             animate={{ height: "auto" }}

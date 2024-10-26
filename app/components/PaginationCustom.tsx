@@ -64,7 +64,7 @@ export function PaginationCustom({
         )}
 
         {getVisiblePages().map((p) => (
-          <PaginationItem>
+          <PaginationItem key={p}>
             <PaginationLink onClick={() => setPage(p)} className={`${page === p ? " bg-rose-400" : ""}`}>
               {p}
             </PaginationLink>
