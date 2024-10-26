@@ -41,8 +41,8 @@ export const login = async (data: { email: string; password: string }) => {
     cookie.set("token", token, {
       httpOnly: true,
       maxAge: JWT_EXPIRES,
-      sameSite: "strict",
-      path: "/",
+      sameSite: "none",
+      path: "*",
     });
 
     return { success: "Login successful", data: userObj };
