@@ -9,12 +9,12 @@ const GamesSlider = ({
   games,
   title,
   slidesPerView,
-  big,
+  big,screenBig
 }: {
   games: Game[];
   title: string;
   slidesPerView?: number;
-  big?: boolean;
+  big?: boolean;screenBig?:boolean
 }) => {
   return (
     <div>
@@ -26,7 +26,7 @@ const GamesSlider = ({
             Browse All Games
           </Link>
         </div>
-        <SwiperCards
+        <SwiperCards 
           className=" h-full"
           slidesPerView={slidesPerView || 4}
           items={games.map((game: Game) => {

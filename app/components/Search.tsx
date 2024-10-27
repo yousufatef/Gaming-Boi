@@ -73,7 +73,7 @@ const Search = () => {
                 <div key={game.id} className="hover:bg-rose-600 duration-200 flex flex-col gap-2 px-4 py-2">
                   <Link href={`/game/${game.id}`} className="flex gap-3 items-start w-full h-full">
                     <div className="rounded-2xl relative overflow-hidden w-[40%] bg-neutral-900 h-20">
-                      <Image className="object-cover" src={game.background_image || ""} alt={game.name} fill />
+                      <Image className="object-cover" src={game.background_image || "/"} alt={game.name} fill />
                     </div>
                     <h1 className="font-semibold text-white">{game.name}</h1>
                   </Link>

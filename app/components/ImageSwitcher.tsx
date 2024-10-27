@@ -8,10 +8,10 @@ const ImageSwitcher = ({ images, game }: { images: any[]; game: Game }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   useEffect(() => {
     const t = setInterval(() => {
-      setActiveIndex((a) => (a + 1) % images.length);
+      setActiveIndex((a) => (a + 1) % images?.length);
     }, 1000);
     return () => clearInterval(t);
-  }, [game, images.length]);
+  }, [game, images?.length]);
   console.log(activeIndex);
 
   return (
@@ -21,7 +21,7 @@ const ImageSwitcher = ({ images, game }: { images: any[]; game: Game }) => {
         <p className=" text-xs text-muted-foreground mt-1">Released {game.released}</p>
       </div>
       <div className=" w-80 h-36 rounded-xl overflow-hidden relative ">
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0 }}

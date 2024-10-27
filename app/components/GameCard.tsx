@@ -9,7 +9,7 @@ import ImageSwitcher from "./ImageSwitcher";
 import MotionItem from "./defaults/MotionItem";
 import AddToWishList from "./AddToWishList";
 
-const GameCard = ({ game, wishlist }: { game: Game; wishlist?: boolean }) => {
+const GameCard = ({ game, wishlist,screenBig=false }: { game: Game; wishlist?: boolean,screenBig:boolean }) => {
   console.log(game);
   return (
     <HoverCard>
@@ -47,7 +47,7 @@ const GameCard = ({ game, wishlist }: { game: Game; wishlist?: boolean }) => {
       </div>
       <HoverCardContent align="center" className="w-full bg-transparent border-none">
         {game.short_screenshots && (
-          <ImageSwitcher game={game} images={wishlist ? game.short_screenshots.results : game.short_screenshots} />
+          <ImageSwitcher game={game} images={screenBig ? game.short_screenshots.results : game.short_screenshots} />
         )}
       </HoverCardContent>
     </HoverCard>

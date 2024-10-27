@@ -27,7 +27,7 @@ export default async function Home() {
       <Hero />
       <GamesSlider title="Top Games for PS5" games={ps5.data.results} />
       <GamesSlider title="Top Games" games={results} />
-      <GamesSlider big slidesPerView={2} title="PLAYSTATION EXCLUSIVES" games={customGames.map((game) => game.data)} />
+      <GamesSlider screenBig big slidesPerView={2} title="PLAYSTATION EXCLUSIVES" games={customGames.map((game) => game.data)} />
       <GamesSlider slidesPerView={4} title="Top PC Games" games={pc.data.results} />
     </section>
   );
