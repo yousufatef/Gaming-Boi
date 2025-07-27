@@ -2,24 +2,25 @@
 
 import { usePathname } from 'next/navigation'
 import Link from "next/link"
+import React, { ReactElement } from 'react';
 
 interface NavLinkProps {
     href: string;
-    icon: React.ReactNode;
+    icon: ReactElement;
     label: string;
 }
 
 const NavLink = ({ href, icon, label }: NavLinkProps) => {
     const pathname = usePathname();
     const isActive = pathname === href;
-    const activeClass = isActive ? 'text-yellow-300' : 'text-white';
+    const activeClass = isActive ? 'text-rose-400' : 'text-white';
 
     return (
         <Link
             href={href}
-            className={`flex items-center gap-2 ${activeClass} hover:text-yellow-300`}
+            className={`flex items-center gap-2 ${activeClass} duration-150 hover:text-rose-400 p-2`}
         >
-            {icon}
+            {React.cloneElement(icon, { className: "w-6 h-6" })}
             <span>{label}</span>
         </Link>
     )
