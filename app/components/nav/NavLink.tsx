@@ -1,24 +1,28 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { ReactElement } from "react";
+import { usePathname } from 'next/navigation'
+import Link from "next/link"
 
-const NavLink = ({ navLink }: { navLink: { link: string; label: string; icon: ReactElement } }) => {
-  const { label, icon } = navLink;
-  const pathName = usePathname(); //hook that needs to be in client mode
-  const isActive = pathName === navLink.link;
-  return (
-    <Link
-      href={navLink.link}
-      className={`flex  ${
-        isActive ? "  text-rose-400" : " text-gray-50"
-      } hover:text-rose-400   my-2 duration-200 gap-2 items-center p-2  rounded-md`}
-    >
-      {React.cloneElement(icon, { className: "w-5 h-5" })}
-      {label}
-    </Link>
-  );
-};
+interface NavLinkProps {
+    href: string;
+    icon: React.ReactNode;
+    label: string;
+}
 
-export default NavLink;
+const NavLink = ({ href, icon, label }: NavLinkProps) => {
+    const pathname = usePathname();
+    const isActive = pathname === href;
+    const activeClass = isActive ? 'text-yellow-300' : 'text-white';
+
+    return (
+        <Link
+            href={href}
+            className={`flex items-center gap-2 ${activeClass} hover:text-yellow-300`}
+        >
+            {icon}
+            <span>{label}</span>
+        </Link>
+    )
+}
+
+export default NavLink

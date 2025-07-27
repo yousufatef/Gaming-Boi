@@ -1,88 +1,52 @@
-"use client";
-import React from "react";
-import { BsFillPeopleFill } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
-import { MdDashboard } from "react-icons/md";
+import { BiSolidCategoryAlt } from "react-icons/bi";
+import { MdGames } from "react-icons/md";
+import { MdOutlineFavorite } from "react-icons/md";
+import { BsPeopleFill } from "react-icons/bs";
+import Link from "next/link";
 import NavLink from "./NavLink";
-import Logo from "../defaults/Logo";
-import { useGetUser } from "@/lib/queryFunctions";
-import { Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { logout } from "@/app/actions/auth";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
-
-export const NAV_LINKS = [
-  {
-    link: "/",
-    label: "Home",
-    icon: <GoHomeFill />,
-  },
-  {
-    link: "/category",
-    label: "Category",
-    icon: <MdDashboard />,
-  },
-  {
-    link: "/games",
-    label: "Games",
-    icon: <MdDashboard />,
-  },
-  {
-    link: "/wishlist",
-    label: "WIshlist",
-    icon: <FaHeart />,
-  },
-  {
-    link: "/friends",
-    label: "Friends",
-    icon: <BsFillPeopleFill />,
-  },
-];
 
 const SideBar = () => {
-  const { user, isLoading } = useGetUser();
-  const queryClient = useQueryClient();
-  return (
-    <div className=" col-span-2">
-      <div className=" py-5 px-10   h-screen sticky inset-0 flex flex-col items-start bg-black/30 text-gray-50">
-        <Logo />
-        {NAV_LINKS.map((navLink, i: number) => (
-          <NavLink key={i} navLink={navLink} />
-        ))}
-        {isLoading ? (
-          <div className="mt-auto">
-            <Skeleton className="h-4 w-[130px]" />
-            <Skeleton className="h-4 w-[100px]" />
-          </div>
-        ) : user?.data ? (
-          <div className="  mt-auto">
-            <NavLink
-              navLink={{
-                link: "/settings",
-                label: "Settings",
-                icon: <Settings />,
-              }}
-            />
-            <Button
-              onClick={async () => {
-                const res = await logout();
-                if (res.success) {
-                  toast.success(res.success);
-                  queryClient.invalidateQueries({ queryKey: ["user"] });
-                } else toast.error(res.error);
-              }}
-              variant={"destructive"}
-            >
-              Logout
-            </Button>
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
-};
+    const NAV_LINKS = [
+        {
+            href: "/",
+            label: "Home",
+            icon: <GoHomeFill />
+        },
+        {
+            href: "/category",
+            label: "Category",
+            icon: <BiSolidCategoryAlt />
+        },
+        {
+            href: "/games",
+            label: "Games",
+            icon: <MdGames />
 
-export default SideBar;
+        },
+        {
+            href: "/wishlist",
+            label: "Wishlist",
+            icon: <MdOutlineFavorite />
+
+        },
+        {
+            href: "/friends",
+            label: "Friends",
+            icon: <BsPeopleFill />
+
+        },
+
+    ]
+    return (
+        <div className="hidden lg:flex col-span-2 bg-green-500">
+            <nav className="flex flex-col gap-4 p-4">
+                {NAV_LINKS.map((link) => (
+                    <NavLink key={link.href} href={link.href} icon={link.icon} label={link.label} />
+                ))}
+            </nav>
+        </div>
+    )
+}
+
+export default SideBar
